@@ -12,7 +12,7 @@ export default function Scene() {
   return (
     <div className="w-full h-full">
       <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-        <color attach="background" args={['#050505']} />
+        <color attach="background" args={['#222']} />
         <Lights />
         <ShaderObjects />
         <OrbitControls enableDamping dampingFactor={0.05} />

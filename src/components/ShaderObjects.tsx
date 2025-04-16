@@ -16,10 +16,8 @@ export default function ShaderObjects() {
     ambientIntensity
   } = useContext(ShadingContext);
   
-  // References for animations
-  const sphereRef = useRef<THREE.Mesh>(null);
+  // Reference for animation
   const torusRef = useRef<THREE.Mesh>(null);
-  const boxRef = useRef<THREE.Mesh>(null);
   
   // Material references
   const phongMaterialRef = useRef<THREE.ShaderMaterial | null>(null);
@@ -57,16 +55,9 @@ export default function ShaderObjects() {
   
   // Animate objects
   useFrame((state, delta) => {
-    if (sphereRef.current) {
-      sphereRef.current.rotation.y += delta * 0.2;
-    }
     if (torusRef.current) {
       torusRef.current.rotation.x += delta * 0.3;
       torusRef.current.rotation.y += delta * 0.1;
-    }
-    if (boxRef.current) {
-      boxRef.current.rotation.x -= delta * 0.15;
-      boxRef.current.rotation.y -= delta * 0.25;
     }
   });
 
@@ -99,28 +90,16 @@ export default function ShaderObjects() {
 
   return (
     <group>
-      {/* Sphere - Best for showing specular highlights */}
-      <mesh ref={sphereRef} position={[-2.5, 0, 0]} castShadow receiveShadow>
-        <sphereGeometry args={[1, 32, 32]} />
-        <primitive object={material instanceof THREE.Material ? material.clone() : material} />
-      </mesh>
-      
-      {/* Torus - Complex curves to show shading variations */}
+      {/* Torus - Good for showing shading variations */}
       <mesh ref={torusRef} position={[0, 0, 0]} castShadow receiveShadow>
-        <torusGeometry args={[0.8, 0.3, 30, 100]} />
+        <torusGeometry args={[1.5, 0.5, 16, 30]} />
         <primitive object={material instanceof THREE.Material ? material.clone() : material} />
       </mesh>
       
-      {/* Box - Sharp edges to show shading differences */}
-      <mesh ref={boxRef} position={[2.5, 0, 0]} castShadow receiveShadow>
-        <boxGeometry args={[1.2, 1.2, 1.2]} />
-        <primitive object={material instanceof THREE.Material ? material.clone() : material} />
-      </mesh>
-      
-      {/* Ground plane */}
+      {/* Simple ground plane */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]} receiveShadow>
-        <planeGeometry args={[20, 20]} />
-        <meshStandardMaterial color="#222222" />
+        <planeGeometry args={[10, 10]} />
+        <meshStandardMaterial color="#333" />
       </mesh>
     </group>
   );
