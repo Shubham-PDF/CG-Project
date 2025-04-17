@@ -1,4 +1,3 @@
-
 import { useContext } from 'react';
 import { ShadingContext } from '../context/ShadingContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';

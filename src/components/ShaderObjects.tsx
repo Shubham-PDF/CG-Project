@@ -72,17 +72,12 @@ export default function ShaderObjects() {
             flatShading: false
           });
       case 'gouraud':
+      default:
         return gouraudMaterialRef.current || 
           new THREE.MeshLambertMaterial({ 
             color: "#6495ED",
             flatShading: false
           });
-      case 'basic':
-      default:
-        return new THREE.MeshBasicMaterial({ 
-          color: "#6495ED", 
-          wireframe: false 
-        });
     }
   };
 
