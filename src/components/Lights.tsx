@@ -10,27 +10,18 @@ export default function Lights() {
     lightPosition, 
     lightIntensity, 
     lightColor,
-    ambientIntensity,
-    shadingMode
+    ambientIntensity
   } = useContext(ShadingContext);
   
   // Create a reference for the directional light
   const directionalLightRef = useRef<THREE.DirectionalLight>(null);
   
-  // Show light helper in development (but not for basic shading)
-  useHelper(
-    shadingMode !== 'basic' ? directionalLightRef : null, 
-    THREE.DirectionalLightHelper, 
-    0.5, 
-    lightColor
-  );
+  // Show light helper in development
+  useHelper(directionalLightRef, THREE.DirectionalLightHelper, 0.5, lightColor);
 
   return (
     <>
-      {/* Ambient light for base illumination */}
       <ambientLight intensity={ambientIntensity} />
-      
-      {/* Directional light as the main light source */}
       <directionalLight
         ref={directionalLightRef}
         position={lightPosition}
@@ -39,11 +30,7 @@ export default function Lights() {
         castShadow
         shadow-mapSize={[2048, 2048]}
       />
-      
-      {/* Small hemisphere light for more natural lighting */}
       <hemisphereLight intensity={0.1} color="#eaeaea" groundColor="#000000" />
-      
-      {/* Visualize light position with a small sphere */}
       <mesh position={lightPosition}>
         <sphereGeometry args={[0.1, 16, 16]} />
         <meshBasicMaterial color={lightColor} />
