@@ -8,7 +8,7 @@ const Index = () => {
     <ShadingProvider>
       <div className="min-h-screen flex flex-col bg-gray-800 text-white">
         <header className="p-3 border-b border-gray-700 bg-gray-900">
-          <h1 className="text-xl font-medium">3D Shading Demo</h1>
+          <h1 className="text-xl font-medium">3D Shading Project- Computer Graphics</h1>
         </header>
 
         <main className="flex-grow flex flex-col lg:flex-row">
